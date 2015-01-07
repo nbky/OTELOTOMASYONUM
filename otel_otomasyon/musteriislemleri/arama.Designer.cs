@@ -50,10 +50,10 @@
             this.giristarih,
             this.cikistarihi,
             this.telefon});
-            this.musteribilgileri.Location = new System.Drawing.Point(12, 89);
+            this.musteribilgileri.Location = new System.Drawing.Point(12, 109);
             this.musteribilgileri.Name = "musteribilgileri";
-            this.musteribilgileri.Size = new System.Drawing.Size(960, 395);
-            this.musteribilgileri.TabIndex = 3;
+            this.musteribilgileri.Size = new System.Drawing.Size(960, 375);
+            this.musteribilgileri.TabIndex = 0;
             this.musteribilgileri.UseCompatibleStateImageBehavior = false;
             // 
             // tcno
@@ -84,30 +84,30 @@
             // 
             this.groupBox1.Controls.Add(this.hizliaramakutu);
             this.groupBox1.Controls.Add(this.mevcutmusteriyihizliaramabutonu);
-            this.groupBox1.Location = new System.Drawing.Point(12, 13);
+            this.groupBox1.Location = new System.Drawing.Point(12, 24);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(960, 70);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Müşteri Arama";
+            this.groupBox1.Text = "Mevcut Müşteri Bilgisi";
             // 
             // hizliaramakutu
             // 
-            this.hizliaramakutu.Location = new System.Drawing.Point(310, 30);
+            this.hizliaramakutu.Location = new System.Drawing.Point(347, 28);
             this.hizliaramakutu.MaxLength = 11;
             this.hizliaramakutu.Name = "hizliaramakutu";
             this.hizliaramakutu.Size = new System.Drawing.Size(184, 20);
-            this.hizliaramakutu.TabIndex = 0;
+            this.hizliaramakutu.TabIndex = 5;
             this.hizliaramakutu.Text = "T.C. Kimlik Numarası Giriniz";
             this.hizliaramakutu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.hizliaramakutu_KeyDown);
             this.hizliaramakutu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.hizliaramakutu_MouseDown);
             // 
             // mevcutmusteriyihizliaramabutonu
             // 
-            this.mevcutmusteriyihizliaramabutonu.Location = new System.Drawing.Point(545, 30);
+            this.mevcutmusteriyihizliaramabutonu.Location = new System.Drawing.Point(537, 24);
             this.mevcutmusteriyihizliaramabutonu.Name = "mevcutmusteriyihizliaramabutonu";
-            this.mevcutmusteriyihizliaramabutonu.Size = new System.Drawing.Size(118, 25);
-            this.mevcutmusteriyihizliaramabutonu.TabIndex = 1;
+            this.mevcutmusteriyihizliaramabutonu.Size = new System.Drawing.Size(75, 25);
+            this.mevcutmusteriyihizliaramabutonu.TabIndex = 4;
             this.mevcutmusteriyihizliaramabutonu.Text = "Ara";
             this.mevcutmusteriyihizliaramabutonu.UseVisualStyleBackColor = true;
             this.mevcutmusteriyihizliaramabutonu.Click += new System.EventHandler(this.button1_Click);

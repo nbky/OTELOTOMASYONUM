@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace otel_otomasyon
 { 
@@ -17,27 +16,34 @@ namespace otel_otomasyon
 
         yenimusteri yenimusteriler;
         mevcutmusteri musteribilgileri;
-       
-       public odaislemleri()
+      
+        public odaislemleri()
         {
             InitializeComponent();
         }
-     
-
-        private void oda201_Click(object sender, EventArgs e)
-        {
-
-            musteribilgileri = new mevcutmusteri();
-            musteribilgileri.Show();
-                    
-        }
-
-        private void odaislemleri_Load(object sender, EventArgs e)
+        void bosodayenimusterikaydi()// bos ise yeni musteri kaydı acılacak odaya tıklayınca
         {
             yenimusteriler = new yenimusteri();
-            yenimusteriler.doluodalar();
+            yenimusteriler.Show();
+            yenimusteriler.Focus();
+                     
         }
+        void doluodamusteribilgileri()//dolu odaysa buradan tıklayınca musterılerın bılgılerı gelecek
+        {
+            musteribilgileri = new mevcutmusteri();
+            musteribilgileri.Show();
+            musteribilgileri.Focus();
+        }
+        void dolumubosmu()//bosluk doluluk kontrolu yapacam
+        {
+            
+        }
+         private void bosbuton201_Click(object sender, EventArgs e)
+         {
+             bosodayenimusterikaydi();
+         }
 
-              
+        
+        
     }
 }

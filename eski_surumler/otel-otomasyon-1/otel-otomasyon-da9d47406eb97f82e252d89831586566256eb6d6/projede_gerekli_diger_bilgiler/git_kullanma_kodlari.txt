@@ -1,0 +1,8 @@
+
+git clone http.... .git (shift+insert)
+sonraki durumlarda git pull diyoruz sadece
+
+git status
+git add --all
+git commit -m "..."
+git push origin master

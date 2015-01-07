@@ -15,18 +15,13 @@ namespace otel_otomasyon
 
     public partial class yenimusteri : Form
     {
-        odaislemleri odaislem;
         string gtarih, ctarih,odaturu; int sonmusteriid, sonodaid;
-        bool kontrol= false, doluoda=false;
-        
+        bool kontrol= false;
       
-
         public yenimusteri()
         {
             InitializeComponent();
         }
-       
-      
 
         public void listelemeişlemi()
         {
@@ -35,7 +30,6 @@ namespace otel_otomasyon
                 
                 try
                 {
-                    
 
                     baglantiayarlari.baglan();
 
@@ -45,7 +39,8 @@ namespace otel_otomasyon
 
                     tablo.Fill(veriler);
 
-                  
+                    //eklenenkisilerebak.Items.Clear();
+
                     for (int i = 0; i < veriler.Rows.Count; i++)
                     {
                         DataRow satir = veriler.Rows[i];
@@ -72,7 +67,11 @@ namespace otel_otomasyon
 
             
         }
-      
+        public void odanumaralari() {
+
+         //s   odanokutu.Items.Add("Eklenecek Veri");
+        }
+            
         public void kalacakgun()
         {
 
@@ -82,15 +81,12 @@ namespace otel_otomasyon
                 DateTime yeni = giristarihikutu.Value + tarih;
                 cikistarihikutu.Value = yeni;
             }
-           
+
+                
+            
+            
         }
-       
-        public void odadurumguncelle() 
-        {
-            SqlCommand odadurumuguncelleme = new SqlCommand("update odalar set durum='Dolu' where isim='" + odanokutu.SelectedText + "'", baglantiayarlari.bagla);
-            odadurumuguncelleme.ExecuteNonQuery();    
-        }
-      
+
         public void panelitemizle()
         {
             tckimliknokutu.ResetText();
@@ -104,53 +100,9 @@ namespace otel_otomasyon
             cikistarihikutu.ResetText();
             kalacaksurekutu.ResetText();
             odaturukutu.ResetText();
-              
-        }
-        
-        public void dolubosodakontrolu()
-        {
-
-         //Dolu ve girilen odayı burada kontrol ettirmek istemiştim. odanakutunun text ini de denedim Selectedtext nide denedim
-            //Bir türlü mevcutmusteribilgileri formunda yakalatamadım içindeki degeri hep boş döndü orada
          
-            baglantiayarlari.baglan();
-
-            SqlCommand komut = new SqlCommand("select * from odalar where  durum ='Dolu' and isim='"+odanokutu.SelectedText+"'", baglantiayarlari.bagla);
-            
-            SqlDataReader oku = komut.ExecuteReader();
-
-            if (oku.Read())
-            {
-                           
-                doluoda = true;
-            }
-            
-            else {
-
-                doluoda = false;
-            }
-
-
-            baglantiayarlari.baglanma();
         }
-       
-        public void doluodalar()
-        {
-            //deneme amaçlı 201 nolu odanın rengini değiştirdim hapsi için ayrı ayrı yapacaktım sizin yaptınığızı uyarlayamadım :( 
-            odaislem = new odaislemleri();   
-            
-            if (doluoda==false)
-	         {
-		         odaislem.oda201.BackColor=Color.Green;
-             }
-          
-           else
-            {
-                odaislem.oda201.BackColor=Color.Red;
-       
-            }
-        }
-      
+
         public void mevcutmusteritckontrolu()
         {
             if (tckimliknokutu.Text.Length== 11)
@@ -188,15 +140,11 @@ namespace otel_otomasyon
                 gtarih = giristarihikutu.Value.ToString("yyyy-MM-dd");
                 ctarih = cikistarihikutu.Value.ToString("yyyy-MM-dd");
 
-                SqlCommand odakomut = new SqlCommand("INSERT INTO odalar (isim,limit) values (@isim,@limit) select scope_identity()", baglantiayarlari.bagla);
-                odakomut.Parameters.AddWithValue("@isim", odanokutu.Text);
-                odakomut.Parameters.AddWithValue("@limit", odaturukutu.Text);
-                sonodaid = Convert.ToInt32(odakomut.ExecuteScalar());
-
-                odadurumguncelle();
-
-                SqlCommand odadurumkomut = new SqlCommand("INSERT INTO hangiodadakimvar (OdaID, MusteriID, GirisTarihi,CikisTarihi) values (@odaid, @musteriid, @giristarihi,@cikistarihi)", baglantiayarlari.bagla);
-                odadurumkomut.Parameters.AddWithValue("@odaid", sonodaid);
+                SqlCommand odakomut = new SqlCommand("update odalar set durum='Dolu' where isim='" + odanokutu.Text + "", baglantiayarlari.bagla);//'select scope_identity()"
+               //sonodaid = Convert.ToInt32(odakomut.ExecuteScalar());
+                odakomut.ExecuteNonQuery();
+                SqlCommand odadurumkomut = new SqlCommand("INSERT INTO hangiodadakimvar (MusteriID, GirisTarihi,CikisTarihi) values (@musteriid, @giristarihi,@cikistarihi)", baglantiayarlari.bagla);
+                //odadurumkomut.Parameters.AddWithValue("@odaid", sonodaid);
                 odadurumkomut.Parameters.AddWithValue("@musteriid", sonmusteriid);
                 odadurumkomut.Parameters.AddWithValue("@giristarihi", gtarih);
                 odadurumkomut.Parameters.AddWithValue("@cikistarihi", ctarih);
@@ -232,23 +180,21 @@ namespace otel_otomasyon
                 musterikomut.Parameters.AddWithValue("@Medenihal", medenihal.Text);
 
                 sonmusteriid = Convert.ToInt32(musterikomut.ExecuteScalar());
-                                      
-                
-                SqlCommand odakomut = new SqlCommand("INSERT INTO odalar (isim,limit) values (@isim,@limit) select scope_identity()", baglantiayarlari.bagla);
-                odakomut.Parameters.AddWithValue("@isim", odanokutu.Text);
-                odakomut.Parameters.AddWithValue("@limit", odaturukutu.Text);
+
+
+
+                SqlCommand odakomut = new SqlCommand("update odalar set durum='Dolu' where isim='" + odanokutu.Text + "'select scope_identity()", baglantiayarlari.bagla);
                 sonodaid = Convert.ToInt32(odakomut.ExecuteScalar());
+             
 
-                odadurumguncelle();
-
+                
                 SqlCommand odadurumkomut = new SqlCommand("INSERT INTO hangiodadakimvar (OdaID, MusteriID, GirisTarihi,CikisTarihi) values (@odaid, @musteriid, @giristarihi,@cikistarihi)", baglantiayarlari.bagla);
                 odadurumkomut.Parameters.AddWithValue("@odaid", sonodaid);
                 odadurumkomut.Parameters.AddWithValue("@musteriid", sonmusteriid);
                 odadurumkomut.Parameters.AddWithValue("@giristarihi", gtarih);
                 odadurumkomut.Parameters.AddWithValue("@cikistarihi", ctarih);
                 odadurumkomut.ExecuteNonQuery();
-               
-       
+
                 baglantiayarlari.baglanma();
                 MessageBox.Show("Müşteri Kayıt İşlemi Gerçekleşti.");
                 
@@ -263,11 +209,16 @@ namespace otel_otomasyon
                 MessageBox.Show(hata.Message);
             }
 
-        }        
+        }
+
+        private void yenimusteri_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void temizlebutonu_Click(object sender, EventArgs e)
         {
             panelitemizle();
-            eklenenkisilerebak.Clear(); 
         }
 
         private void kayitbutonu_Click(object sender, EventArgs e)
@@ -275,18 +226,13 @@ namespace otel_otomasyon
             if (kontrol==false)
             {
                 yenimusterikaydi();
-                
             }
             else
             {
                 dahaoncevarolanmusteriekleme(sonmusteriid);
             }
-           
-            dolubosodakontrolu();
-            doluodalar();
             listelemeişlemi();
-         // panelitemizle();
-            odaislem.Show();
+            panelitemizle();
         }
 
         private void kalacaksurekutu_TextChanged(object sender, EventArgs e)
@@ -311,6 +257,14 @@ namespace otel_otomasyon
             {
                 
             }
-        }              
+        }
+
+        private void guncellebutonu_Click(object sender, EventArgs e)
+        {
+            listelemeişlemi();
+        }
+               
+       
+                      
     }
 }

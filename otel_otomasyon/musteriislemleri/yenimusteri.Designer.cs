@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(yenimusteri));
             this.musterikayitpanel = new System.Windows.Forms.Panel();
+            this.guncellebutonu = new System.Windows.Forms.Button();
             this.eklenenkisilerebak = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,6 +71,7 @@
             // 
             // musterikayitpanel
             // 
+            this.musterikayitpanel.Controls.Add(this.guncellebutonu);
             this.musterikayitpanel.Controls.Add(this.eklenenkisilerebak);
             this.musterikayitpanel.Controls.Add(this.label14);
             this.musterikayitpanel.Controls.Add(this.odaturukutu);
@@ -103,6 +105,16 @@
             this.musterikayitpanel.Name = "musterikayitpanel";
             this.musterikayitpanel.Size = new System.Drawing.Size(960, 471);
             this.musterikayitpanel.TabIndex = 0;
+            // 
+            // guncellebutonu
+            // 
+            this.guncellebutonu.Location = new System.Drawing.Point(677, 246);
+            this.guncellebutonu.Name = "guncellebutonu";
+            this.guncellebutonu.Size = new System.Drawing.Size(87, 41);
+            this.guncellebutonu.TabIndex = 39;
+            this.guncellebutonu.Text = "Güncelle";
+            this.guncellebutonu.UseVisualStyleBackColor = true;
+            this.guncellebutonu.Click += new System.EventHandler(this.guncellebutonu_Click);
             // 
             // eklenenkisilerebak
             // 
@@ -217,7 +229,7 @@
             // 
             this.kayitbutonu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.kayitbutonu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.kayitbutonu.Location = new System.Drawing.Point(683, 246);
+            this.kayitbutonu.Location = new System.Drawing.Point(573, 246);
             this.kayitbutonu.Name = "kayitbutonu";
             this.kayitbutonu.Size = new System.Drawing.Size(87, 41);
             this.kayitbutonu.TabIndex = 13;
@@ -306,37 +318,6 @@
             // odanokutu
             // 
             this.odanokutu.FormattingEnabled = true;
-            this.odanokutu.Items.AddRange(new object[] {
-            "201",
-            "202",
-            "203",
-            "204",
-            "205",
-            "206",
-            "207",
-            "208",
-            "209",
-            "210",
-            "211",
-            "212",
-            "213",
-            "214",
-            "215",
-            "301",
-            "302",
-            "303",
-            "304",
-            "305",
-            "306",
-            "307",
-            "308",
-            "309",
-            "310",
-            "311",
-            "312",
-            "313",
-            "314",
-            "315"});
             this.odanokutu.Location = new System.Drawing.Point(683, 81);
             this.odanokutu.Name = "odanokutu";
             this.odanokutu.Size = new System.Drawing.Size(182, 22);
@@ -480,6 +461,7 @@
             this.Name = "yenimusteri";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yeni Müşteri Kaydı";
+            this.Load += new System.EventHandler(this.yenimusteri_Load);
             this.musterikayitpanel.ResumeLayout(false);
             this.musterikayitpanel.PerformLayout();
             this.ResumeLayout(false);
@@ -518,6 +500,7 @@
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label14;
         public System.Windows.Forms.ListView eklenenkisilerebak;
+        public System.Windows.Forms.Button guncellebutonu;
         public System.Windows.Forms.ColumnHeader columnHeader1;
         public System.Windows.Forms.ColumnHeader columnHeader2;
         public System.Windows.Forms.ColumnHeader columnHeader3;

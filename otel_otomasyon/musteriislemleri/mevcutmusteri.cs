@@ -14,16 +14,17 @@ namespace otel_otomasyon
     public partial class mevcutmusteri : Form
     {
         yenimusteri yenimusteriler;
-       
 
+        public string odanumarasi;
+ 
         public mevcutmusteri()
         {
             InitializeComponent();
         }
-       
+
         public void musteribilgidoldurma()
         {
-           
+
 
             DataTable veriler = new DataTable();
 
@@ -40,14 +41,14 @@ namespace otel_otomasyon
             {
 
                 baglantiayarlari.baglan();
-               
+
                 yenimusteriler = new yenimusteri();
 
-      
-                
+                string odanumarasi = yenimusteriler.odanokutu.Text.ToString();
+
                 SqlCommand komut = new SqlCommand("SELECT TOP 1 m.TCKimlik,(m.Ad+' '+m.Soyad) as [Ad Soyad],h.GirisTarihi,h.CikisTarihi,o.isim,m.Telefon from musteriler as m left join hangiodadakimvar as h on m.ID=h.MusteriID left join odalar as o on o.ID=h.OdaID where o.durum='Dolu' and o.isim=@odaisim", baglantiayarlari.bagla);
-                komut.Parameters.AddWithValue("@odaisim",yenimusteriler.odanokutu.SelectedText);
-               
+                komut.Parameters.AddWithValue("@odaisim", odanumarasi);
+
                 SqlDataAdapter tablo = new SqlDataAdapter(komut);
 
                 tablo.Fill(veriler);
@@ -70,9 +71,9 @@ namespace otel_otomasyon
                         musteribilgiformu.Items.Add(item);
                     }
                 }
-               
-                 baglantiayarlari.baglanma();
-                 MessageBox.Show(yenimusteriler.odanokutu.SelectedText);
+
+                baglantiayarlari.baglanma();
+                MessageBox.Show(odanumarasi);
             }
             catch (SqlException hata)
             {
@@ -83,7 +84,7 @@ namespace otel_otomasyon
 
         private void mevcutmusteri_Load(object sender, EventArgs e)
         {
-         
+
             musteribilgidoldurma();
         }
     }
